@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>CSCI 3398: Fall 2025</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../shared/main.css">
+  <script
+    data-dapp-detection="">!function () { let e = !1; function n() { if (!e) { const n = document.createElement("meta"); n.name = "dapp-detected", document.head.appendChild(n), e = !0 } } if (window.hasOwnProperty("ethereum")) { if (window.__disableDappDetectionInsertion = !0, void 0 === window.ethereum) return; n() } else { var t = window.ethereum; Object.defineProperty(window, "ethereum", { configurable: !0, enumerable: !1, set: function (e) { window.__disableDappDetectionInsertion || n(), t = e }, get: function () { if (!window.__disableDappDetectionInsertion) { const e = arguments.callee; e && e.caller && e.caller.toString && -1 !== e.caller.toString().indexOf("getOwnPropertyNames") || n() } return t } }) } }();</script>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1022.0" data-gr-ext-installed="">
+  <style>
+    a {
+      color: #535353;
+    }
+
+    a.nounderline {
+      text-decoration: none;
+      decoration: none;
+      border-bottom: none;
+    }
+  </style>
+
+  <div id="wrapper">
+    <header id="header" class="alt" style="width: 100%">
+      <div class="bgimg" style="height: 160px; background: #800000">
+        <div style="height: 30px; width: 100%"></div>
+        <h1>
+          <font size="+5">CSCI 3398: Generative AI: Mathematics and Applications</font>
+          <div style="height:10px"></div>
+        </h1>
+        <h2>
+          <font size="+2">
+            Instructor:&nbsp;&nbsp;<a href="https://donglaiw.github.io/" class="nounderline">Donglai Wei</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Fall 2025 (TT 1:30-2:45 pm)
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            245 Beacon ST Room 125
+          </font>
+        </h2>
+      </div>
+    </header>
+    <center>
+      <div style="background: #EEEEEE; height: 7px"></div>
+    </center>
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul>
+        <li><a href="#overview" class="inheritcolor">Overview</a></li> <b>·</b>
+        <li><a href="#schedule" class="inheritactive">Schedule</a></li> <b>·</b>
+        <li><a href="#staff" class="inheritcolor">Staff</a></li> <b>·</b>
+        <li><a href="#info" class="inheritcolor">Course info</a></li> <b>·</b>
+        <li><a href="https://bostoncollege.instructure.com/courses/1634677" class="inheritcolor">Canvas</a></li>
+        <b>·</b>
+        <li><a href="https://docs.google.com/document/d/1VWzy8Tkhs2QaKBJp37i4wnV9xQXjJttXMUh3TajgxGc/edit?usp=sharing"
+            class="inheritcolor">Discord</a></li>
+      </ul>
+    </nav>
+
+
+    <!-- Main -->
+    <div id="main">
+      <section id="note" class="main special">
+
+        <!-- Introduction -->
+        <section id="overview" class="main">
+          <center>
+            <header class="major">
+              <h2>Overview</h2>
+            </header>
+            <div class="spotlight" style="width: 90%; text-align: left">
+              <div class="content">
+                <p>CSCI 3398 is an advanced undergraduate-level AI class covering fundamental <b>image basics <font
+                      color=#800000>(week 1-3)</font></b>,
+                  state-of-the-art <b>deep learning <font color=#800000>(week 4-7)</font></b> methods,
+                  and a wide range of <b>real-world applications <font color=#800000>(week 8-14)</font></b>.
+
+                  <!--div style="padding-left: 4%; margin-top: -30px">
+                  <ul>
+                    <li>Prerequisites: <a
+                        href="https://www.youtube.com/playlist?list=PL0-GT3co4r2y2YErbmuJw2L5tW4Ew2O5B">Linear Algebra
+                        (Essence, Chap 1-4)</a>, <a
+                        href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr">Multivariate
+                        Calculus (Essence, Chap 1, 3-4, 8-9)</a>, and <a
+                        href="https://www.codecademy.com/learn/learn-python-3">Python (Basics)</a></li>
+                    <li>Lecture format: 80% PPT, 10% think-pair-share, 10% live coding.</li>
+                    <li><b>Textbooks</b> (FREE!!!)
+                      <ul style="margin-left: 30px;margin-top: 0px">
+                        <li>CV: Szeliski. <a href="https://szeliski.org/Book/"><i>Computer Vision: Algorithms and
+                              Applications 2nd Edition</i></a></li>
+                        <li>D2L: Zhang et al. <a href="https://d2l.ai/"><i>Dive into Deep Learning</i></a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#hw">Grading</a>: No quizzes/exams. 10 labs (35%) + 5 psets (35%) + 1 final project
+                      (30%). <a href="https://drive.google.com/drive/folders/1LQR9ZyZ7EtOMsvpB1bPRARBVgwQW3OWW">[folder
+                        of assignments]</a> </li>
+                  </ul>
+                </div-->
+                </p>
+              </div>
+            </div>
+          </center>
+        </section>
+
+
+        <section id="schedule" class="main special">
+          <center>
+            <header class="major">
+              <h2>Schedule</h2>
+            </header>
+            <div class="table-wrapper" style="width:100%;margin:auto;">
+              <font style="font-size: 16px">
+                <table class="alt">
+                  <tbody>
+                  </tbody>
+                  <colgroup>
+                    <col width="12%">
+                    <col width="10%">
+                    <col width="28%">
+                    <col width="32%">
+                    <col width="12%">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th style="text-align:center">Theme</th>
+                      <th style="text-align:center">Date</th>
+                      <th style="text-align:center">Topic</th>
+                      <th style="text-align:center">Materials</th>
+                      <th style="text-align:center">Assignments</th>
+                    </tr>
+                  </thead>
+                  <style>
+                    ul.materials {
+                      padding-left: 15px;
+                    }
+
+                    div.subtopic {
+                      font-style: normal;
+                      font-family: HelveticaNeue-Light;
+                      font-weight: 200;
+                    }
+
+                    td.topic {
+                      font-family: HelveticaNeue;
+                      font-weight: 600;
+                    }
+
+                    td.topic2 {
+                      font-style: italic;
+                      font-weight: 200;
+                    }
+                  </style>
+
+                  <!-- Start schedule -->
+                  <tbody>
+                    <tr>
+                      <td rowspan=10 style="vertical-align:middle;text-align:center;">Basics<br />(Week 1-4) </td>
+                      <td colspan="4" style="text-align:center;">Probability and Statistics</td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Aug 26</td>
+                      <td>Lec. 1: Parametric Model I</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Aug 28</td>
+                      <td>Lec. 2: Parametric Model II</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Sep 2</td>
+                      <td>Lec. 3: Non-Parametric Models II</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Sep 4</td>
+                      <td>Lec. 4: Non-Parametric Models II</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Sep 9</td>
+                      <td>Lec. 5: Graphical Models I</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Sep 11</td>
+                      <td>Lec. 6: Graphical Models II</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="text-align:center;">Machine Learning and Deep Learning</td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Sep 16</td>
+                      <td>Lec. 7: Multi-linear Perceptron I</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Sep 18</td>
+                      <td>Lec. 8: Multi-linear Perceptron II</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td rowspan=10 style="vertical-align:middle;text-align:center;">Text Generation<br />(Week 5-8)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Sep 23</td>
+                      <td>Lec. 9: Text Processing Basics</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Sep 25</td>
+                      <td>Lec. 10: Language Models</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Sep 30</td>
+                      <td>Lec. 11: Transformer: Attention Mechanism</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Oct 2</td>
+                      <td>Lec. 12: RNN: Sequence Modeling</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Oct 7</td>
+                      <td>Lec. 13: GPT: Representation Learning</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="text-align:center;">Reinforcement Learning</td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Oct 9</td>
+                      <td>Lec. 14: ChatGPT: RLHF</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Oct 14</td>
+                      <td>No class (Mon Schedule)</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Oct 16</td>
+                      <td>Lec. 15: DeepSeek-R1: LLM Reasoning</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td rowspan=13 style="vertical-align:middle;text-align:center;">Image Generation<br />(Week 9-13)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Oct 21</td>
+                      <td>Lec. 16: Image Processing Basics</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Oct 23</td>
+                      <td>Convolutional Neural Network (CNN)</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="text-align:center;">Information Theory</td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Oct 28</td>
+                      <td>Variational Autoencoder (VAE)</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Oct 30</td>
+                      <td>Generative Adversarial Network (GAN)</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="text-align:center;">Dynamical Systems</td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Nov 4</td>
+                      <td>Differential Equations</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Nov 6</td>
+                      <td>Neural ODEs</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Nov 11</td>
+                      <td>Normalizing Flows</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="text-align:center;">Stochastic Process</td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Nov 13</td>
+                      <td>Stochastic Differential Equations</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Nov 18</td>
+                      <td>Diffusion Models</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td rowspan=4 style="vertical-align:middle;text-align:center;">Other Modalities<br />(Week
+                        13-14)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Nov 20</td>
+                      <td>Molecule Generation for Drug Discovery</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Tue, Nov 25</td>
+                      <td>3D Generation</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Nov 27</td>
+                      <td>No Class (Happy Thanksgiving)</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td rowspan=4 style="vertical-align:middle;text-align:center;">Finals<br />(Week
+                        15-16)
+                      </td>
+                      <td>Tue, Dec 2</td>
+
+                      <td>Project Presentations I</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Dec 4</td>
+                      <td>Project Presentations II</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Thu, Dec. 11</td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <font color=#800000>final project (report/code due)</font>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <!-- End schedule -->
+              </font>
+            </div>
+          </center>
+        </section>
+        <br><br>
+        <section id="staff" class="main">
+          <center>
+            <header class="major">
+              <h2>Staff &amp; Office Hours</h2>
+            </header>
+            <!-- <font size = "+1"> -->
+            <br>
+            <!-- <style> -->
+            <!--   .vline -->
+            <!--   { -->
+            <!--       border-left: 0px dashed gray; -->
+            <!--       height: 175px; -->
+            <!--   }  -->
+            <!-- </style> -->
+            <!-- <style>a { text-decoration: underline }</style> -->
+            <style>
+              a.stafflink {
+                text-decoration: none;
+                decoration: none;
+                border-bottom: none;
+              }
+            </style>
+            <div class="table-wrapper" style="width:90%">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="staff">
+                        <div><img src="../shared/donglai.png" class="staff"></div>
+                        <div><b><a href="https://donglaiw.github.io/" class="stafflink">Donglai Wei</a></b></div>
+                        <div><strong>Instructor</strong></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="width:17pt"></div>
+                    </td>
+                    <!--td>
+                      <div class="staff">
+                        <div><img src="src/" class="staff"></div>
+                        <div><b>TBD</b></div>
+                        <div>TA</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="staff">
+                        <div><img src="src/" class="staff"></div>
+                        <div><b>TBD</b></div>
+                        <div>TA</div>
+                      </div>
+                    </td-->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </center>
+
+          <center>
+            <!-- <br><b>Office Hours</b><br><br> -->
+            <div class="table-wrapper" style="width:90%">
+              <table class="alt" style="width:70%">
+                <thead>
+                  <tr>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Office hours</th>
+                  </tr>
+                </thead>
+                <tr class="alternate">
+                  <td>Donglai Wei </td>
+                  <td>(W/Th) 3-4 pm @ Rm 528F, 245 Beacon ST</td>
+                </tr>
+                <tr class="alternate">
+                  <td>Jerry Hou </td>
+                  <td>(Tu) 2-3 pm, (W) 6-7 pm @ Rm 122, 245 Beacon ST</td>
+                </tr>
+                <tr class="alternate">
+                  <td>Nicholas Arangio </td>
+                  <td>(W) 1-3 pm @ <a href="https://bccte.zoom.us/j/8805625762">Zoom</a></td>
+                </tr>
+                </tbody>
+              </table>
+              <div align="left" style="padding-left: 4%; margin-top: -30px">
+                <ul>
+                  <li>Office hours will take place in person (or Zoom if needed).</li>
+                  <li>Donglai will hold additional one-on-one AMA office hours (M) 1-2 pm, (F) 2-3pm <a
+                      href="https://calendly.com/donglai-wei/open-office-hour">(15-min by appointment)</a></li>
+                </ul>
+              </div>
+              <br><br>
+            </div>
+          </center>
+        </section>
+
+        <!-- Introduction -->
+        <section id="info" class="main">
+          <center>
+            <header class="major">
+              <h2>Course information</h2>
+            </header>
+
+            <div class="spotlight" style="width: 90%; text-align: left">
+              <div class="content">
+
+                This is a challenging course and we are here to help you become a more-AI version of yourself.
+                Please feel free to reach out if you need help in any form.
+                <br />
+                <p><b>1. Get help</b> (besides office hours)</p>
+                <div style="padding-left: 4%; margin-top: -35px">
+                  <ul>
+                    <li><b>Discord:</b> For labs/psets/final projects, we will create dedicated channels for you to ask
+                      public questions.
+                      If you cannot make your post public (e.g., due to
+                      revealing problem set solutions), please create a room with instructors and TAs separately,
+                      or come to office
+                      hours. Please note, however, that the course staff
+                      cannot provide help debugging code, and there is
+                      no guarantee that they'll be able to answer
+                      last-minute assignment questions before the
+                      deadline. We also appreciate it when you respond
+                      to questions from other students! If you have an
+                      important question that you would prefer to discuss
+                      over email, you may email the course staff,
+                      or the instructor directly.</li>
+                    <li><b>Support:</b> The <a
+                        href="https://www.bc.edu/bc-web/offices/student-affairs/sites/counseling.html">university
+                        counseling services center</a> provides
+                      a variety of programs and activities.
+                    </li>
+                    <li>
+                      <b>Accommodations for students with disabilities:</b>
+                      If you are a student with a documented disability seeking reasonable accommodations in this
+                      course, please contact Kathy Duggan, (617) 552-8093, <a
+                        href="mailto:dugganka@bc.edu">dugganka@bc.edu</a>, at the Connors Family Learning Center
+                      regarding learning disabilities and ADHD, or Rory Stein, (617) 552-3470, <a
+                        href="mailto:steinr@bc.edu">steinr@bc.edu</a>, in the Disability Services Office regarding all
+                      other types of disabilities, including temporary disabilities. Advance notice and appropriate
+                      documentation are required for accommodations.
+                    </li>
+
+                  </ul>
+                </div>
+                <br />
+
+
+                <p id="hw"><b>2. Assignment</b></p>
+                <div style="padding-left: 4%; margin-top: -35px">
+                  All programming assignments are in Python on Colab, always due at
+                  <b>
+                    <font color=#800000>midnight (11:59 pm) on the due date</font>
+                  </b>.
+                  <ul>
+                    <li><b>Install Colab on the browser:</b>
+                      Sign in to your Google account, follow the <a
+                        href="https://drive.google.com/drive/folders/1LQR9ZyZ7EtOMsvpB1bPRARBVgwQW3OWW">[link]</a> to
+                      the folder of assignments, click on <i>lab1.ipynb</i>, click on "Open with" and "Connect more
+                      apps", install "Colaboratory".
+                    <li><b>Submission:</b>
+                      You need save a copy of the file in your own Google drive, so that you can save your edits.
+                      Afterwards, you can download the ipynb file and submit it to <b>Canvas</b>.</li>
+                    <li><b>Lab (1 per week):</b>
+                      Every lecture has a lab exercise to help you gain the hands-on understanding about the material.
+                      The lab on previous week's lectures is due <i>on Thursday</i>.
+                      We will go through some code in class and you need to finish up the exercises.
+                    </li>
+
+                    <li><b>Pset (1 per 1.5 week):</b>
+                      In each pset, we will build a prototype component for the self-driving car with the learned
+                      materials.
+                    </li>
+
+                    <li><b>Final project:</b> <a
+                        href="https://docs.google.com/document/d/1RPF6hJYOGr-RjSactOsPYlGhTfgRyehkN6U8ZNTrC2U/edit">(guideline)</a>
+                      In lieu of a final exam,
+                      we'll have a final project. This project will be
+                      completed in small groups during the last weeks of
+                      the class. The direction for this project is
+                      open-ended: you can either choose from a list of
+                      project ideas that we distribute, or you can
+                      propose a topic of your own. A short project
+                      proposal will be due approximately halfway through
+                      the course. During the final exam period, you'll
+                      turn in a final report and give a short
+                      presentation. You may use an ongoing research work
+                      for your final project, as long it meets the
+                      requirements.</li>
+                  </ul>
+                </div>
+                <br />
+
+                <p><b>3. Academic policy</b></p>
+                <div style="padding-left: 4%; margin-top: -35px">
+                  <ul>
+                    <li><b>Late policy:</b> You'll have <b> 10 late
+                        days each</b> (counting weekends) for labs and psets respectively
+                      over the course of the
+                      semester. Each time you use one, you may
+                      submit an assignment one day late
+                      without penalty. You are allowed to use
+                      multiple late days on a single assignment. For
+                      example, you can use all of your days at once
+                      to turn in one assignment a week late. You
+                      do <i>not</i> need to notify us when you use a
+                      late day; we'll deduct it automatically. If
+                      you run out of late days and still submit
+                      late, your assignment will be penalized at a
+                      rate of 10% per day. We
+                      will not provide additional late time, except
+                      under exceptional circumstances, and for these
+                      we'll require documentation (e.g., a doctor's
+                      note). Please note that the late days are
+                      provided to help you deal with minor setbacks,
+                      such as routine illness or injury, paper
+                      deadlines, interviews, and computer problems;
+                      these do not generally qualify for an
+                      additional extension.</li>
+                    <li><b>Academic integrity:</b> While you are
+                      encouraged to discuss homework
+                      assignments with other students, <i>your
+                        programming work must be completed
+                        individually</i>. Thus it is acceptable to learn from another student the general idea for
+                      writing program code to perform a particular task, or the technique for solving a mathematical
+                      problem, but unacceptable for two students to prepare their assignments together and submit what
+                      are essentially two copies of identical work. If you have any uncertainty about the application of
+                      this policy, please check with me.
+                      Failure to comply with these guidelines
+                      will be considered a violation of the
+                      <a
+                        href="https://www.bc.edu/bc-web/academics/sites/university-catalog/policies-procedures.html#academic_integrity_policies">University
+                        policies on academic integrity</a>.
+                      Please make sure that you are familiar with these policies.
+                      We will use <b><a href="https://moss.pl/">moss.pl</a></b> tool to check each lab and pset for
+                      plagriasm detection.
+                    </li>
+                  </ul>
+                </div>
+                <br />
+
+                <b>4. Additional resource</b>
+                <div style="padding-left: 4%; margin-top: 0px">
+                  <ul style="padding-left: 4%;">
+                    <li><a href="https://fpcv.cs.columbia.edu/">computer vision</a>, <a
+                        href="https://www.youtube.com/playlist?list=PLoROMvodv4rOABXSygHTsbvUz4G_YQhOb">deep
+                        learning</a>, <a
+                        href="https://www.youtube.com/playlist?list=PL5-TkQAfAZFbzxjBHtzdVCWE0Zbhomg7r">deep learning
+                        for computer vision</a></li>
+                  </ul>
+                </div>
+                <br />
+
+                <b>Acknowledgements:</b> This course draws
+                heavily from ...
+              </div>
+            </div>
+          </center>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+          <p class="copyright">
+            <font size="-1">© 2022
+              Boston College. Website based on a template
+              from <a href="https://html5up.net/">HTML5
+                Up</a> and Andrew Owen's <a href="https://www.eecs.umich.edu/courses/eecs442-ahowens/fa20/">course</a>
+              at U. Michigan.
+            </font>
+          </p>
+        </footer>
+        <font size="-1">
+        </font>
+      </section>
+    </div>
+    <font size="-1">
+
+      <script src="../shared/jquery.min.js"></script>
+      <script src="../shared/jquery.scrollex.min.js"></script>
+      <script src="../shared/jquery.scrolly.min.js"></script>
+      <script src="../shared/skel.min.js"></script>
+      <script src="../shared/util.js"></script>
+
+    </font>
+  </div>
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>
