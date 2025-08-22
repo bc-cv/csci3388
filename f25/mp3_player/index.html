@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3 Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .player-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            gap: 30px;
+        }
+
+        .player-left {
+            flex: 1;
+            max-width: 450px;
+        }
+
+        .player-right {
+            flex: 1;
+            min-width: 400px;
+        }
+
+        .song-selector {
+            margin-bottom: 20px;
+        }
+
+        .song-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .album-art {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .album-art .placeholder {
+            font-size: 48px;
+            color: #999;
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .song-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .play-pause-btn {
+            font-size: 32px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 60px;
+            height: 60px;
+        }
+
+        .play-pause-btn:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+
+        .lyrics-container {
+            height: 500px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .lyric-line {
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lyric-line.active {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-radius: 5px;
+            font-weight: bold;
+            color: #333;
+            transform: scale(1.02);
+        }
+
+        .lyric-line:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 5px;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="player-left">
+            <div class="song-selector">
+                <select id="songSelect">
+                    <option value="">Select a song...</option>
+                </select>
+            </div>
+
+            <div class="album-art" id="albumArt">
+                <div class="placeholder">🎵</div>
+            </div>
+
+            <div class="song-info">
+                <div class="song-title" id="songTitle">No song selected</div>
+                <div class="song-artist" id="songArtist">Unknown Artist</div>
+            </div>
+
+            <div class="progress-container">
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" id="prevBtn">⏮️</button>
+                <button class="control-btn play-pause-btn" id="playPauseBtn">▶️</button>
+                <button class="control-btn" id="nextBtn">⏭️</button>
+            </div>
+
+            <audio id="audioPlayer"></audio>
+        </div>
+
+        <div class="player-right">
+            <div class="lyrics-container" id="lyricsContainer">
+                <div class="lyric-line">Select a song to view lyrics</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class MP3Player {
+            constructor() {
+                this.audio = document.getElementById('audioPlayer');
+                this.songSelect = document.getElementById('songSelect');
+                this.playPauseBtn = document.getElementById('playPauseBtn');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.progressBar = document.getElementById('progressBar');
+                this.progressFill = document.getElementById('progressFill');
+                this.currentTimeEl = document.getElementById('currentTime');
+                this.durationEl = document.getElementById('duration');
+                this.lyricsContainer = document.getElementById('lyricsContainer');
+                this.songTitle = document.getElementById('songTitle');
+                this.songArtist = document.getElementById('songArtist');
+                this.albumArt = document.getElementById('albumArt');
+                
+                this.songs = [];
+                this.lyrics = [];
+                this.currentSongIndex = -1;
+                this.isPlaying = false;
+                
+                this.init();
+            }
+
+            async init() {
+                await this.loadSongs();
+                this.setupEventListeners();
+                this.audio.volume = 0.7;
+            }
+
+            async loadSongs() {
+                try {
+                    const response = await fetch('data/');
+                    const text = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(text, 'text/html');
+                    const links = doc.querySelectorAll('a');
+                    
+                    const mp3Files = [];
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href && href.endsWith('.mp3')) {
+                            mp3Files.push(href);
+                        }
+                    });
+
+                    if (mp3Files.length === 0) {
+                        const knownSongs = ['GenAI in the Code.mp3'];
+                        this.songs = knownSongs.map(song => ({
+                            title: song.replace('.mp3', '').replace(/%20/g, ' '),
+                            file: `data/${song}`,
+                            lrc: `data/${song.replace('.mp3', '.lrc')}`,
+                            image: `data/${song.replace('.mp3', '.jpg')}`
+                        }));
+                    } else {
+                        this.songs = mp3Files.map(file => ({
+                            title: file.replace('.mp3', '').replace(/%20/g, ' '),
+                            file: `data/${file}`,
+                            lrc: `data/${file.replace('.mp3', '.lrc')}`,
+                            image: `data/${file.replace('.mp3', '.jpg')}`
+                        }));
+                    }
+
+                    this.populateSongSelector();
+                } catch (error) {
+                    console.log('Using fallback song list');
+                    this.songs = [{
+                        title: 'GenAI in the Code',
+                        file: 'data/GenAI in the Code.mp3',
+                        lrc: 'data/GenAI in the Code.lrc',
+                        image: 'data/GenAI in the Code.jpg'
+                    }];
+                    this.populateSongSelector();
+                }
+            }
+
+            populateSongSelector() {
+                this.songSelect.innerHTML = '<option value="">Select a song...</option>';
+                this.songs.forEach((song, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = song.title;
+                    this.songSelect.appendChild(option);
+                });
+            }
+
+            async loadLyrics(lrcFile) {
+                try {
+                    const response = await fetch(lrcFile);
+                    const text = await response.text();
+                    return this.parseLRC(text);
+                } catch (error) {
+                    console.log('Could not load lyrics:', error);
+                    return [];
+                }
+            }
+
+            parseLRC(lrcText) {
+                const lines = lrcText.split('\n');
+                const lyrics = [];
+                
+                lines.forEach(line => {
+                    const match = line.match(/\[(\d{2}):(\d{2})\.(\d{2})\](.*)/);
+                    if (match) {
+                        const minutes = parseInt(match[1]);
+                        const seconds = parseInt(match[2]);
+                        const centiseconds = parseInt(match[3]);
+                        const text = match[4].trim();
+                        
+                        const time = minutes * 60 + seconds + centiseconds / 100;
+                        lyrics.push({ time, text });
+                    }
+                });
+                
+                return lyrics.sort((a, b) => a.time - b.time);
+            }
+
+            async selectSong(index) {
+                if (index < 0 || index >= this.songs.length) return;
+                
+                this.currentSongIndex = index;
+                const song = this.songs[index];
+                
+                this.audio.src = song.file;
+                this.songTitle.textContent = song.title.replace(/%20/g, ' ');
+                this.songArtist.textContent = 'AI Generated Music';
+                
+                this.lyrics = await this.loadLyrics(song.lrc);
+                this.displayLyrics();
+                
+                this.resetPlayer();
+                await this.loadAlbumArt(song.image);
+            }
+
+            async loadAlbumArt(imageFile) {
+                this.albumArt.innerHTML = '<div class="placeholder">🎵</div>';
+                
+                try {
+                    const img = new Image();
+                    img.onload = () => {
+                        this.albumArt.innerHTML = `<img src="${imageFile}" alt="Album Art">`;
+                    };
+                    img.onerror = () => {
+                        const pngFile = imageFile.replace('.jpg', '.png');
+                        const pngImg = new Image();
+                        pngImg.onload = () => {
+                            this.albumArt.innerHTML = `<img src="${pngFile}" alt="Album Art">`;
+                        };
+                        pngImg.onerror = () => {
+                            console.log('Could not load album art image:', imageFile);
+                        };
+                        pngImg.src = pngFile;
+                    };
+                    img.src = imageFile;
+                } catch (error) {
+                    console.log('Could not load album art:', error);
+                }
+            }
+
+            displayLyrics() {
+                if (this.lyrics.length === 0) {
+                    this.lyricsContainer.innerHTML = '<div class="lyric-line">No lyrics available</div>';
+                    return;
+                }
+
+                this.lyricsContainer.innerHTML = '';
+                this.lyrics.forEach((lyric, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'lyric-line';
+                    div.textContent = lyric.text;
+                    div.dataset.time = lyric.time;
+                    div.addEventListener('click', () => {
+                        this.audio.currentTime = lyric.time;
+                    });
+                    this.lyricsContainer.appendChild(div);
+                });
+            }
+
+            updateLyrics() {
+                const currentTime = this.audio.currentTime;
+                const lyricLines = this.lyricsContainer.querySelectorAll('.lyric-line');
+                
+                lyricLines.forEach(line => line.classList.remove('active'));
+                
+                let activeLyric = null;
+                this.lyrics.forEach((lyric, index) => {
+                    if (lyric.time <= currentTime) {
+                        activeLyric = index;
+                    }
+                });
+                
+                if (activeLyric !== null && lyricLines[activeLyric]) {
+                    lyricLines[activeLyric].classList.add('active');
+                    lyricLines[activeLyric].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+
+            setupEventListeners() {
+                this.songSelect.addEventListener('change', (e) => {
+                    if (e.target.value !== '') {
+                        this.selectSong(parseInt(e.target.value));
+                    }
+                });
+
+                this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+                this.prevBtn.addEventListener('click', () => this.previousSong());
+                this.nextBtn.addEventListener('click', () => this.nextSong());
+                
+                this.progressBar.addEventListener('click', (e) => {
+                    const rect = this.progressBar.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    this.audio.currentTime = percent * this.audio.duration;
+                });
+
+
+                this.audio.addEventListener('loadedmetadata', () => {
+                    this.durationEl.textContent = this.formatTime(this.audio.duration);
+                });
+
+                this.audio.addEventListener('timeupdate', () => {
+                    const percent = (this.audio.currentTime / this.audio.duration) * 100;
+                    this.progressFill.style.width = percent + '%';
+                    this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
+                    this.updateLyrics();
+                });
+
+                this.audio.addEventListener('ended', () => {
+                    this.nextSong();
+                });
+
+                this.audio.addEventListener('play', () => {
+                    this.isPlaying = true;
+                    this.playPauseBtn.textContent = '⏸️';
+                });
+
+                this.audio.addEventListener('pause', () => {
+                    this.isPlaying = false;
+                    this.playPauseBtn.textContent = '▶️';
+                });
+            }
+
+            togglePlayPause() {
+                if (this.currentSongIndex === -1) return;
+                
+                if (this.isPlaying) {
+                    this.audio.pause();
+                } else {
+                    this.audio.play();
+                }
+            }
+
+            previousSong() {
+                if (this.songs.length === 0) return;
+                let newIndex = this.currentSongIndex - 1;
+                if (newIndex < 0) newIndex = this.songs.length - 1;
+                this.songSelect.value = newIndex;
+                this.selectSong(newIndex);
+            }
+
+            nextSong() {
+                if (this.songs.length === 0) return;
+                let newIndex = this.currentSongIndex + 1;
+                if (newIndex >= this.songs.length) newIndex = 0;
+                this.songSelect.value = newIndex;
+                this.selectSong(newIndex);
+            }
+
+            resetPlayer() {
+                this.progressFill.style.width = '0%';
+                this.currentTimeEl.textContent = '0:00';
+                this.playPauseBtn.textContent = '▶️';
+                this.isPlaying = false;
+            }
+
+            formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new MP3Player();
+        });
+    </script>
+</body>
+</html>
